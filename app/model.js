@@ -43,17 +43,7 @@ module.exports.getPerson = async function (pid) {
   console.log("modulejs.getPerson " + pid)
   let result = await knex.select().from("people").where("person_id", pid)
   return result
-  /*result.then(
-    //fullfiled
-    function(rows){
-      console.log("module.getPerson result rows")
-      console.log(rows[0])
-      return rows[0]
-    },
-    //rejected
-    error => {
-      console.log('model.getPerson', error.message)
-    })*/
+  
 }
 
 /*
