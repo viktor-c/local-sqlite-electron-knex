@@ -1,0 +1,53 @@
+{
+  "name": "electron-sqlite-knex-example",
+  "productName": "Local SQLite Example using electron and knex",
+  "version": "0.1.0",
+  "description": "Demonstrates database-driven Electron using local knex.js wrapper for SQLite.",
+  "main": "main.js",
+  "repository": "https://github.com/viktor-c/local-sqlite-electron-knex",
+  "author": "Patrick K. Moffitt, CSM, M.A.",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^11.0.2",
+    "electron-builder": "^22.9.1"},
+  "scripts": {
+    "start": "electron .",
+    "start-mac": "/Applications/Electron.app/Contents/MacOS/Electron .",
+    "pack": "electron-builder --dir",
+    "distWin": "electron-builder --ia32 --x64 -w"
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.3",
+    "cheerio": "^0.22.0",
+    "jquery": "^3.5.1",
+    "knex": "^0.21.12",
+    "popper.js": "^1.14.7",
+    "sql.js": "^1.4.0",
+    "sqlite3": "^5.0.0",
+    "tether": "^1.4.7"
+  },
+  "build": {
+    "appId": "com.victor.sqlite-electron-knex",
+    "productName": "Testing sqlite",
+    "win": {
+      "target": [
+        "portable"
+      ]
+    },
+    "portable": {
+      "artifactName": "sqlite_portable.exe"
+    },
+    "directories": {
+      "output": "./output",
+      "app": "./",
+      "buildResources": "./buildResources"
+    },
+    
+    "forceCodeSigning": false
+  },
+  "standard": {
+    "globals": [
+      "$"
+    ]
+  }
+}
