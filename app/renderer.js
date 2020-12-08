@@ -3,6 +3,7 @@
 const fs = require('fs')
 const path = require('path')
 const app = require('electron').remote.app
+const ipcRenderer = require('electron').ipcRenderer
 const cheerio = require('cheerio')
 
 window.$ = window.jQuery = require('jquery')
@@ -32,7 +33,7 @@ O('#edit-person').append(editPerson)
 let dom = O.html()
 $('body').html(dom)
 
-$('document').ready(function () {
+$(function () {
   window.model.getPeople()
   $('#edit-person-submit').click(function (e) {
     e.preventDefault()
@@ -56,3 +57,10 @@ $('document').ready(function () {
     }
   })
 })
+//electron.ipcRenderer.send('variable-request', ['somevar', 'anothervar']);
+ipcRenderer.on('variable-reply', function (event, args) {
+  console.log("renderer.js: dbpath becomes " + args)
+  window.model.reloadDB(args)
+  console.log("renderer.js: getting people fomr model.js ")
+  window.model.getPeople()
+});

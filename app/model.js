@@ -1,5 +1,6 @@
 'use strict'
 
+
 const path = require('path')
 const fs = require('fs')
 const SQL = require('sql.js')
@@ -10,13 +11,29 @@ Knex init DB
 must run 
 npm install sqlite3 --save
 */
-const knex = require("knex")({
+var knex = require("knex")({
 	client: "sqlite3",
 	connection: {
 		filename: path.join(__dirname, 'example.db')
-	}
+  },
+  useNullAsDefault: true
 });
+console.log("model.js: Loaded knex default object")
 
+
+module.exports.reloadDB = function (filepath){
+  knex = require("knex")({
+    client: "sqlite3",
+    connection: {
+      filename: filepath
+    },
+    useNullAsDefault: true
+  });
+  console.log("Reloaded knex object" + knex)
+
+
+
+}
 
 /**
  * Knex getPeople
@@ -24,8 +41,11 @@ const knex = require("knex")({
  * @param {} object 
  */
 module.exports.getPeople = function () {
+  console.log("model.js: query database")
   let result = knex.select().from("people")
   result.then(function(rows){
+    console.log("model.js: query successful")
+    console.log("model.js: Run view.showPeople for the result of the query")
     view.showPeople(rows)
   })
 }

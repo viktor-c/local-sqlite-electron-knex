@@ -9,7 +9,8 @@
   "license": "MIT",
   "devDependencies": {
     "electron": "^11.0.2",
-    "electron-builder": "^22.9.1"},
+    "electron-builder": "^22.9.1"
+  },
   "scripts": {
     "start": "electron .",
     "start-mac": "/Applications/Electron.app/Contents/MacOS/Electron .",
@@ -42,7 +43,6 @@
       "app": "./",
       "buildResources": "./buildResources"
     },
-    
     "forceCodeSigning": false
   },
   "standard": {
